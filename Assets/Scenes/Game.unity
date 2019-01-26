@@ -357,6 +357,7 @@ MonoBehaviour:
   life_bar_home: {fileID: 1387214015}
   life_bar_enemy: {fileID: 1182472264}
   dialog_home: {fileID: 1167438190}
+  dialog_enemy: {fileID: 707668970}
 --- !u!1 &166957240
 GameObject:
   m_ObjectHideFlags: 0
