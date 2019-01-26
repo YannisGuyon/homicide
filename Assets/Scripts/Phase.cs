@@ -95,6 +95,7 @@ public class PhaseGoToNextFight : PhaseDuration
     }
     override public void Init()
     {
+        main.camera_manager.EnableTrebble();
         Debug.Log(GetType());
         // Camera behind house
         // House move
