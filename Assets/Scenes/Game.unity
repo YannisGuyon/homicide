@@ -902,6 +902,7 @@ MonoBehaviour:
   introBattleTheme: {fileID: 8300000, guid: b4302d398079c7c4995596244ff03576, type: 3}
   battleTheme: {fileID: 8300000, guid: 4e4484677e97fca40a598bd77b342839, type: 3}
   endingTheme: {fileID: 8300000, guid: 2f16df7d01acb164db4a1d3921494f57, type: 3}
+  japaneseSoundGenerator: {fileID: 2134847771}
 --- !u!4 &1034456348
 Transform:
   m_ObjectHideFlags: 0
@@ -1352,6 +1353,12 @@ MonoBehaviour:
   color_empty: {r: 1, g: 0, b: 0.10950947, a: 1}
   color_full: {r: 0.8862745, g: 0.43137255, b: 0.83137256, a: 1}
   flipped: 0
+--- !u!82 &1533275932 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6817138341177871128, guid: d8ef08c10b5159940bb8808ba5b512d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2134847770}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1602525150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,6 +1505,92 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &2134847770
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6817138341177871135, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_Name
+      value: JapaneseSoundGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817138341177871129, guid: d8ef08c10b5159940bb8808ba5b512d2,
+        type: 3}
+      propertyPath: audiosource
+      value: 
+      objectReference: {fileID: 1533275932}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8ef08c10b5159940bb8808ba5b512d2, type: 3}
+--- !u!114 &2134847771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6817138341177871129, guid: d8ef08c10b5159940bb8808ba5b512d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2134847770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b54ff935708c2f4284c0fe97a91843c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2138855825
 GameObject:
   m_ObjectHideFlags: 0
