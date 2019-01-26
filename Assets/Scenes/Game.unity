@@ -896,6 +896,12 @@ MonoBehaviour:
   scene_manager: {fileID: 835404519}
   ui_manager: {fileID: 147138796}
   audio_source: {fileID: 66647404}
+  menuMusic: {fileID: 8300000, guid: 02dcca338a5869242a8c5955d4f5a2af, type: 3}
+  cineMusic: {fileID: 8300000, guid: 8bbbcc5aa31069946986680950df1309, type: 3}
+  mainTheme: {fileID: 8300000, guid: af74366779f1a7e46a3cc2e194ec6705, type: 3}
+  introBattleTheme: {fileID: 8300000, guid: b4302d398079c7c4995596244ff03576, type: 3}
+  battleTheme: {fileID: 8300000, guid: 4e4484677e97fca40a598bd77b342839, type: 3}
+  endingTheme: {fileID: 8300000, guid: 2f16df7d01acb164db4a1d3921494f57, type: 3}
 --- !u!4 &1034456348
 Transform:
   m_ObjectHideFlags: 0
