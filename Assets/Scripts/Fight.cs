@@ -5,27 +5,27 @@ using UnityEngine;
 public abstract class Fight
 {
     public Main main;
-    public int life_home;
+    public Home home;
     public Enemy enemy;
 
     public bool IsDone()
     {
-        return (life_home <= 0 || enemy.life <= 0);
+        return (home.life <= 0 || enemy.life <= 0);
     }
     virtual public void Init()
     {
-        life_home = 100;
-        enemy.life = 100;
+        this.home.life = 100;
+        this.enemy.life = 100;
 
-        main.ui_manager.dialog_home.SetAttacks("Home attack 1", "Home attack 2", "Home attack 3");     // #############
-        main.ui_manager.dialog_enemy.SetAttacks("Enemy attack 1", "Enemy attack 2", "Enemy attack 3");    // #############
+        main.ui_manager.dialog_home.SetAttacks(home.attacks);
+        main.ui_manager.dialog_enemy.SetAttacks(this.enemy.attacks);
     }
     virtual public void Update() { }
 }
 
 public class FightHouse : Fight
 {
-    public int lastDamageDealtByEnemyMs;
+    public int lastDamageDealtByEnemyMs, lastDamageDealtByHomeMs;
     public FightHouse(Enemy enemy)
     {
         this.enemy = enemy;
@@ -35,31 +35,38 @@ public class FightHouse : Fight
     {
         base.Init();
         lastDamageDealtByEnemyMs = 0;
+        lastDamageDealtByHomeMs = 0;
     }
     override public void Update()
     {
         base.Update();
         lastDamageDealtByEnemyMs += (int)(Time.deltaTime * 1000);
+        lastDamageDealtByHomeMs += (int)(Time.deltaTime * 1000);
         if (lastDamageDealtByEnemyMs >= 5)
         {
             // Fx damage taken
             main.camera_manager.Trebble(0.05f);
             Attack currentEnemyAttack = this.enemy.GeCurrentAttack();
-            life_home -= currentEnemyAttack.damage;
+            main.ui_manager.dialog_enemy.SelectAttack(this.enemy.attackPattern[this.enemy.currentPatternIndex]);                         // #############
+            this.enemy.updatePattern();
+            home.life -= currentEnemyAttack.damage;
             lastDamageDealtByEnemyMs -= currentEnemyAttack.durationMs;
-
-            main.ui_manager.dialog_enemy.SelectAttack(0);                         // #############
-            main.ui_manager.dialog_enemy.Enable();                         // #############
-            main.ui_manager.dialog_enemy.Disable();                         // #############
-            main.ui_manager.dialog_home.Enable();                         // #############
-            main.ui_manager.dialog_home.Disable();                         // #############
-
-            Debug.Log(currentEnemyAttack.name + " : life_home "+life_home);
         }
-        if (Input.GetKey(KeyCode.KeypadEnter))
+        else
         {
-            // Handle input
-            int attack_index = main.ui_manager.dialog_home.GetSelectedAttack();     // #############
+            main.ui_manager.dialog_enemy.Disable();
+        }
+        if (lastDamageDealtByEnemyMs >= 5)
+        {
+            main.ui_manager.dialog_home.Enable();
+            if (Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                // Handle input
+                Attack currentHomeAttack = this.home.attacks[main.ui_manager.dialog_home.GetSelectedAttack()];
+                home.life -= currentHomeAttack.damage;
+                lastDamageDealtByHomeMs -= currentHomeAttack.durationMs;
+                main.ui_manager.dialog_home.Disable();
+            }
         }
     }
 }

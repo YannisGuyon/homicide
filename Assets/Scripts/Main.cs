@@ -48,7 +48,7 @@ public class Main : MonoBehaviour
         if (phase.IsDone(elapsed_time))
         {
             elapsed_time = 0;
-            if (phase.GetType() == typeof(PhaseFight) && fight != null && fight.life_home <= 0)
+            if (phase.GetType() == typeof(PhaseFight) && fight != null && fight.home.life <= 0)
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single);
                 // Game over

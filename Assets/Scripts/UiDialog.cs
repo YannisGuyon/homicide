@@ -33,7 +33,7 @@ public class UiDialog : MonoBehaviour
         }
     }
 
-    public void SetAttacks(params string[] attacks_texts)
+    public void SetAttacks(params Attack[] attacks_texts)
     {
         for (int i = 0; i < attacks.Count; ++i)
             Destroy(attacks[i].gameObject);
@@ -42,7 +42,7 @@ public class UiDialog : MonoBehaviour
         {
             UiAttack attack = Instantiate(attack_prefab, attacks_container);
             attacks.Add(attack);
-            attack.SetText(attacks_texts[i]);
+            attack.SetText(attacks[i].name);
             if (i == 0)
                 attack.Select();
             else

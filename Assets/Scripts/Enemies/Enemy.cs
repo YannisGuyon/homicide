@@ -10,9 +10,7 @@ public abstract class Enemy : Character
 
     public Attack GeCurrentAttack()
     {
-        Attack result = this.attacks[attackPattern[currentPatternIndex]];
-        this.updatePattern();
-        return result;
+        return this.attacks[attackPattern[currentPatternIndex]];
     }
 
     public void updatePattern()
@@ -62,6 +60,18 @@ public class Cathedral : Enemy
         this.attacks = new Attack[] { new Attack(200, 2, "Belly Belly"),
             new Attack(1000, 27, "Sacrushed Chapel"),
             new Attack(4000, 47, "Growing Faith")};
+        this.attackPattern = new int[] { 0, 1, 2, 1, 0 };
+    }
+}
+
+public class Boss : Enemy
+{
+    public Boss()
+    {
+        this.name = "City Boss";
+        this.attacks = new Attack[] { new Attack(200, 7, "City Quake"),
+            new Attack(800, 27, "Maximal Pollution Crisis"),
+            new Attack(3500, 47, "Tornado buildings")};
         this.attackPattern = new int[] { 0, 1, 2, 1, 0 };
     }
 }
