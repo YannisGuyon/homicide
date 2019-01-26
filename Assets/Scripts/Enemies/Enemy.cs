@@ -29,3 +29,39 @@ public class Cottage : Enemy {
         this.attackPattern = new int[] { 0, 0, 1 };
     }
 }
+
+public class Factory : Enemy
+{
+    public Factory()
+    {
+        this.name = "Factory";
+        this.attacks = new Attack[] { new Attack(800, 7, "Sound the alarm"),
+            new Attack(1200, 12, "Staff Evacuation"),
+            new Attack(1000, 17, "Pollution Puke")};
+        this.attackPattern = new int[] { 0, 1, 2 };
+    }
+}
+
+public class Skyscraper : Enemy
+{
+    public Skyscraper()
+    {
+        this.name = "Skyscraper";
+        this.attacks = new Attack[] { new Attack(200, 2, "Spiky spiky"),
+            new Attack(1000, 23, "Shuriken from the sky"),
+            new Attack(4000, 47, "Snakescraper")};
+        this.attackPattern = new int[] { 0, 0, 1, 0, 0, 2 };
+    }
+}
+
+public class Cathedral : Enemy
+{
+    public Cathedral()
+    {
+        this.name = "Cathedral";
+        this.attacks = new Attack[] { new Attack(200, 2, "Belly Belly"),
+            new Attack(1000, 27, "Sacrushed Chapel"),
+            new Attack(4000, 47, "Growing Faith")};
+        this.attackPattern = new int[] { 0, 1, 2, 1, 0 };
+    }
+}
