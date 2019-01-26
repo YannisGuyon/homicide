@@ -33,6 +33,8 @@ public class PhaseWorldIntro : PhaseDuration
     {
         Debug.Log(GetType());
         main.camera_manager.SetColor(main.camera_manager.calm_color);
+        main.audio_source.clip = main.cineMusic;
+        main.audio_source.Play();
     }
     override public Phase GetNextPhase()
     {
@@ -68,6 +70,9 @@ public class PhaseAngryness : PhaseDuration
         Debug.Log(GetType());
         // Launch house transformation animation
         // Zoom camera
+        main.audio_source.clip = main.mainTheme;
+        main.audio_source.loop = true;
+        main.audio_source.Play();
     }
     override public void Update(float elapsed_time)
     {
@@ -110,6 +115,9 @@ public class PhaseFightIntro : PhaseDuration
     {
         Debug.Log(GetType());
         // Camera on the side
+        main.audio_source.clip = main.introBattleTheme;
+        main.audio_source.loop = true;
+        main.audio_source.Play();
     }
     override public Phase GetNextPhase()
     {
@@ -131,6 +139,9 @@ public class PhaseFight : Phase
         //main.ui_manager.dialog_home.SetAttacks();
         main.fight.main = main;
         main.fight.Init();
+        main.audio_source.clip = main.battleTheme;
+        main.audio_source.loop = true;
+        main.audio_source.Play();
     }
     public override void Update(float elapsed_time)
     {
@@ -175,6 +186,9 @@ public class PhaseWorldOutro : PhaseDuration
         Debug.Log(GetType());
         // Cut
         // Happy house
+        main.audio_source.clip = main.endingTheme;
+        main.audio_source.loop = true;
+        main.audio_source.Play();
     }
     override public Phase GetNextPhase()
     {

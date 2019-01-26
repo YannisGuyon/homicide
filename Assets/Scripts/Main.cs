@@ -14,6 +14,13 @@ public class Main : MonoBehaviour
     public Fight fight;
     public Home home;
 
+    public AudioClip menuMusic;
+    public AudioClip cineMusic;
+    public AudioClip mainTheme;
+    public AudioClip introBattleTheme;
+    public AudioClip battleTheme;
+    public AudioClip endingTheme;
+
     void Start()
     {
         camera_manager.shader_camera.material = Instantiate(camera_manager.shader_camera.material);
