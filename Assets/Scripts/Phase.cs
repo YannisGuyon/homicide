@@ -175,7 +175,7 @@ public class PhaseFightOutro : PhaseDuration
 {
     override public float GetDuration()
     {
-        return 1;
+        return 2;
     }
     override public void Init()
     {
@@ -199,7 +199,7 @@ public class PhaseWorldOutro : PhaseDuration
 {
     override public float GetDuration()
     {
-        return 3;
+        return 23;
     }
     override public void Init()
     {
