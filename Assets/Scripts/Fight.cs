@@ -22,7 +22,7 @@ public abstract class Fight
 
 public class FightHouse : Fight
 {
-    public double last_damage_dealt;
+    public float last_damage_dealt;
 
     override public void Init()
     {
@@ -37,6 +37,8 @@ public class FightHouse : Fight
         {
             // Fx damage taken
             life_house -= 19;
+            last_damage_dealt = 0;
+            main.camera_manager.Trebble(0.05f);
         }
         if (Input.GetKey(KeyCode.KeypadEnter))
         {

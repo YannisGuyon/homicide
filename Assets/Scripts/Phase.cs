@@ -6,30 +6,33 @@ public abstract class Phase
 {
     public Main main;
 
-    abstract public bool IsDone(double elapsed_time);
+    abstract public bool IsDone(float elapsed_time);
     virtual public void Init() { }
-    virtual public void Update(double elapsed_time) { }
+    virtual public void Update(float elapsed_time) { }
     abstract public Phase GetNextPhase();
 }
 
 public abstract class PhaseDuration : Phase
 {
-    override public bool IsDone(double elapsed_time)
+    override public bool IsDone(float elapsed_time)
     {
         return elapsed_time >= GetDuration();
     }
-    abstract public double GetDuration();
+    abstract public float GetDuration();
 }
+
+// - - - -
 
 public class PhaseWorldIntro : PhaseDuration
 {
-    override public double GetDuration()
+    override public float GetDuration()
     {
         return 3;
     }
     override public void Init()
     {
-        // Set shader to green
+        Debug.Log(GetType());
+        main.camera_manager.SetColor(main.camera_manager.calm_color);
     }
     override public Phase GetNextPhase()
     {
@@ -39,12 +42,13 @@ public class PhaseWorldIntro : PhaseDuration
 
 public class PhaseCityGrowth : PhaseDuration
 {
-    override public double GetDuration()
+    override public float GetDuration()
     {
         return 3;
     }
     override public void Init()
     {
+        Debug.Log(GetType());
         // Grow buildings animation
     }
     override public Phase GetNextPhase()
@@ -55,18 +59,22 @@ public class PhaseCityGrowth : PhaseDuration
 
 public class PhaseAngryness : PhaseDuration
 {
-    override public double GetDuration()
+    override public float GetDuration()
     {
         return 3;
     }
     override public void Init()
     {
+        Debug.Log(GetType());
         // Launch house transformation animation
         // Zoom camera
     }
-    override public void Update(double elapsed_time)
+    override public void Update(float elapsed_time)
     {
-        // Fade shader
+        if (elapsed_time >= 1)
+        {
+            main.camera_manager.SetColor(Color.Lerp(main.camera_manager.calm_color, main.camera_manager.angry_color, (elapsed_time - 1.0f) * 5.0f));
+        }
     }
     override public Phase GetNextPhase()
     {
@@ -76,12 +84,13 @@ public class PhaseAngryness : PhaseDuration
 
 public class PhaseGoToNextFight : PhaseDuration
 {
-    override public double GetDuration()
+    override public float GetDuration()
     {
         return 3;
     }
     override public void Init()
     {
+        Debug.Log(GetType());
         // Camera behind house
         // House move
     }
@@ -93,12 +102,13 @@ public class PhaseGoToNextFight : PhaseDuration
 
 public class PhaseFightIntro : PhaseDuration
 {
-    override public double GetDuration()
+    override public float GetDuration()
     {
         return 3;
     }
     override public void Init()
     {
+        Debug.Log(GetType());
         // Camera on the side
     }
     override public Phase GetNextPhase()
@@ -109,36 +119,38 @@ public class PhaseFightIntro : PhaseDuration
 
 public class PhaseFight : Phase
 {
-    override public bool IsDone(double elapsed_time)
+    override public bool IsDone(float elapsed_time)
     {
         return main.fight.IsDone();
     }
     override public void Init()
     {
-        // Display UI
+        Debug.Log(GetType());
+        main.ui_manager.Show();
         main.fight.main = main;
         main.fight.Init();
     }
-    public override void Update(double elapsed_time)
+    public override void Update(float elapsed_time)
     {
         main.fight.Update();
     }
     override public Phase GetNextPhase()
     {
-        return new PhaseCityGrowth();
+        return new PhaseFightOutro();
     }
 }
 
 public class PhaseFightOutro : PhaseDuration
 {
-    override public double GetDuration()
+    override public float GetDuration()
     {
         return 1;
     }
     override public void Init()
     {
+        Debug.Log(GetType());
         // Fx Boom tchak
-        // Hide UI
+        main.ui_manager.Hide();
         if (main.fight.GetType() == typeof(FightHouse)) main.fight = null;  // Set next fight
     }
     override public Phase GetNextPhase()
@@ -151,12 +163,13 @@ public class PhaseFightOutro : PhaseDuration
 
 public class PhaseWorldOutro : PhaseDuration
 {
-    override public double GetDuration()
+    override public float GetDuration()
     {
         return 3;
     }
     override public void Init()
     {
+        Debug.Log(GetType());
         // Cut
         // Happy house
     }

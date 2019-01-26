@@ -8,36 +8,61 @@ public class Main : MonoBehaviour
     public SceneManager scene_manager;
     public UiManager ui_manager;
 
-    public Phase phase;
-    public double elapsed_time;
+    private Phase phase;
+    private float elapsed_time;
     public Fight fight;
 
     void Start()
     {
+        camera_manager.shader_camera.material = Instantiate(camera_manager.shader_camera.material);
         phase = new PhaseWorldIntro();
+        phase.main = this;
+        phase.Init();
         elapsed_time = 0;
         fight = new FightHouse();
+        ui_manager.Init();
     }
 
     void Update()
     {
+        // Debug
+        if (Input.GetKey(KeyCode.U))
+        {
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                Time.timeScale = 0;
+            else
+                Time.timeScale = Mathf.Clamp(Time.timeScale - Time.deltaTime, 0, 5);
+            Debug.Log("Time.timeScale = " + Time.timeScale);
+        }
+        if (Input.GetKey(KeyCode.I))
+        {
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                Time.timeScale = 1;
+            else
+                Time.timeScale = Mathf.Clamp(Time.timeScale + Time.deltaTime, 0, 5);
+            Debug.Log("Time.timeScale = " + Time.timeScale);
+        }
+
         if (phase != null) phase.Update(elapsed_time);
         if (phase.IsDone(elapsed_time))
         {
             elapsed_time = 0;
-            if (fight != null && fight.life_house <= 0)
+            if (phase.GetType() == typeof(PhaseFight) && fight != null && fight.life_house <= 0)
             {
-                // Game over
+                UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single);
             }
             else
             {
                 phase = phase.GetNextPhase();
+                phase.main = this;
+                phase.Init();
             }
         }
+        ui_manager.UpdateUi(this);
         elapsed_time += Time.deltaTime;
         if (phase == null)
         {
-            // Go to end scene
+            UnityEngine.SceneManagement.SceneManager.LoadScene("End", UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
     }
 }

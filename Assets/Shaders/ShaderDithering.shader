@@ -3,6 +3,7 @@
     Properties
     {
 		_MainTex("Texture", 2D) = "white" {}
+		_Color("Main Color", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -40,6 +41,7 @@
             }
 
 			sampler2D _MainTex;
+			fixed4 _Color;
 
 			float GetDitheringMultiplier(float screen_pos)
 			{
@@ -73,7 +75,7 @@
 				col.g = floor(col.g * quant) / quant;
 				col.b = floor(col.b * quant) / quant;
 
-				col.rgb *= float3(1, 0.5, 1);
+				col.rgb *= _Color.rgb;
 
 				//float3 yuv;
 				//yuv.r = 0.299 * col.r + 0.587 * col.g + 0.114 * col.b;
