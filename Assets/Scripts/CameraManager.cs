@@ -24,7 +24,7 @@ public class CameraManager : MonoBehaviour
             shader_camera.gameObject.transform.localRotation = Quaternion.Slerp(Quaternion.identity, Random.rotationUniform, 0.00005f);
             shader_camera.gameObject.transform.localPosition = Random.insideUnitSphere * (0.00005f + trebble);
         }
-        trebble *= Mathf.Clamp01(1 - Time.deltaTime * 5.0f);
+        trebble *= Mathf.Clamp01(1 - Time.deltaTime * 10.0f);
     }
 
     public void SetColor(Color color)

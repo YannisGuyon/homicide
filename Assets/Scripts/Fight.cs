@@ -50,12 +50,15 @@ public class FightHouse : Fight
         {
             main.ui_manager.dialog_enemy.Enable();
             // Fx damage taken
-            main.camera_manager.Trebble(0.01f);
+            main.camera_manager.Trebble(0.005f);
             Attack currentEnemyAttack = this.enemy.GeCurrentAttack();
             main.ui_manager.dialog_enemy.SelectAttack(this.enemy.attackPattern[this.enemy.currentPatternIndex]);
             this.enemy.updatePattern();
             home.life -= currentEnemyAttack.damage;
             lastDamageDealtByEnemyMs = -currentEnemyAttack.durationMs;
+
+            if (currentEnemyAttack.name == "Shutter Shaker") main.Add(new FxShutterShaker(main.cottage_transform));
+            if (currentEnemyAttack.name == "Chim chimney") main.Add(new FxChimChimney(main.cottage_transform));
         }
         else
         {
@@ -76,6 +79,7 @@ public class FightHouse : Fight
                 if (currentHomeAttack.name == "Rollout") main.Add(new FxRollout(main.home_transform));
                 if (currentHomeAttack.name == "Exploding chimney") main.Add(new FxExplodingChimney(main.home_transform));
                 if (currentHomeAttack.name == "Freesby balcony") main.Add(new FxFreesbyBalcony(main.home_transform));
+                if (currentHomeAttack.name == "Tree crush") main.Add(new FxTreeCrush(main.home_transform));
             }
         }
     }

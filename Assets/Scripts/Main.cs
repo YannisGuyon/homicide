@@ -24,11 +24,14 @@ public class Main : MonoBehaviour
 
     public Animator[] animators;
     public Transform home_transform;
+    public Transform cottage_transform;
 
     private LinkedList<Fx> fxs = new LinkedList<Fx>();
 
     void Start()
     {
+        if (cottage_transform == null) cottage_transform = GameObject.Find("Scene/scene/Cube").transform;
+
         camera_manager.shader_camera.material = Instantiate(camera_manager.shader_camera.material);
         phase = new PhaseWorldIntro();
         phase.main = this;
@@ -209,6 +212,68 @@ public class FxFreesbyBalcony : FxTransform
             float scale = (1 + 2 * Mathf.Min(GetProgress(), 1 - GetProgress()));
             transform.localScale = new Vector3(scale, 1, scale);
             transform.localRotation = local_rotation * Quaternion.AngleAxis(GetProgress() * 360, Vector3.up);
+        }
+    }
+}
+
+public class FxTreeCrush : FxTransform
+{
+    public FxTreeCrush(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.4f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+            float scale = 2 * Mathf.Min(GetProgress(), 1 - GetProgress());
+            transform.localScale = new Vector3(1 - 0.7f * scale, 1 + 5 * scale, 1 - 0.7f * scale);
+            transform.localRotation = local_rotation * Quaternion.AngleAxis(scale * 90, local_rotation * Vector3.left);
+        }
+    }
+}
+
+public class FxShutterShaker : FxTransform
+{
+    public FxShutterShaker(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.8f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+            float scale = 2 * Mathf.Min(GetProgress(), 1 - GetProgress());
+            transform.localPosition = local_position + (local_rotation * Vector3.right) * (0.1f * scale);
+            transform.localRotation = local_rotation * Quaternion.AngleAxis(Mathf.Cos(GetProgress() * Mathf.PI * 6) * 30, Vector3.forward);
+        }
+    }
+}
+
+public class FxChimChimney : FxTransform
+{
+    public FxChimChimney(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.3f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+            float scale = 2 * Mathf.Min(GetProgress(), 1 - GetProgress());
+            transform.localPosition = local_position + new Vector3(0, scale * 0.1f, 0);
         }
     }
 }
