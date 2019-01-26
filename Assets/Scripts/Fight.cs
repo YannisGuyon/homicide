@@ -27,10 +27,12 @@ public class FightHouse : Fight
 {
     public int lastDamageDealtByEnemyMs;
     public int lastDamageDealtByHomeMs;
-    public FightHouse(Enemy enemy, Home home)
+    public JapaneseSoundGenerator soundGenerator;
+    public FightHouse(Enemy enemy, Home home, JapaneseSoundGenerator soundGenerator)
     {
         this.enemy = enemy;
         this.home = home;
+        this.soundGenerator = soundGenerator;
     }
 
     override public void Init()
@@ -68,6 +70,7 @@ public class FightHouse : Fight
                 enemy.life -= currentHomeAttack.damage;
                 lastDamageDealtByHomeMs = -currentHomeAttack.durationMs;
                 main.ui_manager.dialog_home.Disable();
+                soundGenerator.GenerateSound();
             }
         }
     }
