@@ -127,6 +127,8 @@ public class PhaseFight : Phase
     {
         Debug.Log(GetType());
         main.ui_manager.Show();
+        main.ui_manager.dialog_home.Enable();
+        main.ui_manager.dialog_home.SetAttacks("A", "B", "C");
         main.fight.main = main;
         main.fight.Init();
     }
@@ -150,6 +152,7 @@ public class PhaseFightOutro : PhaseDuration
     {
         Debug.Log(GetType());
         // Fx Boom tchak
+        main.ui_manager.dialog_home.Disable();
         main.ui_manager.Hide();
         if (main.fight.GetType() == typeof(FightHouse)) main.fight = null;  // Set next fight
     }

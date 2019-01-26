@@ -6,6 +6,7 @@ public class UiManager : MonoBehaviour
 {
     public LifeBar life_bar_home;
     public LifeBar life_bar_enemy;
+    public Dialog dialog_home;
 
     public void Init()
     {
@@ -24,10 +25,12 @@ public class UiManager : MonoBehaviour
     {
         life_bar_home.Hide();
         life_bar_enemy.Hide();
+        dialog_home.Hide();
     }
     public void Show()
     {
         life_bar_home.Show();
         life_bar_enemy.Show();
+        dialog_home.Show();
     }
 }

@@ -7,6 +7,7 @@ public class Main : MonoBehaviour
     public CameraManager camera_manager;
     public SceneManager scene_manager;
     public UiManager ui_manager;
+    public AudioSource audio_source;
 
     private Phase phase;
     private float elapsed_time;
