@@ -46,10 +46,11 @@ public class FightHouse : Fight
         lastDamageDealtByHomeMs += (int)(Time.deltaTime * 1000);
         if (lastDamageDealtByEnemyMs >= 5)
         {
+            main.ui_manager.dialog_enemy.Enable();
             // Fx damage taken
-            main.camera_manager.Trebble(0.05f);
+            main.camera_manager.Trebble(0.02f);
             Attack currentEnemyAttack = this.enemy.GeCurrentAttack();
-            main.ui_manager.dialog_enemy.SelectAttack(this.enemy.attackPattern[this.enemy.currentPatternIndex]);                         // #############
+            main.ui_manager.dialog_enemy.SelectAttack(this.enemy.attackPattern[this.enemy.currentPatternIndex]);
             this.enemy.updatePattern();
             home.life -= currentEnemyAttack.damage;
             lastDamageDealtByEnemyMs = -currentEnemyAttack.durationMs;

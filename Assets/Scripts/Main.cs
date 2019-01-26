@@ -41,7 +41,7 @@ public class Main : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 Time.timeScale = 0;
             else
-                Time.timeScale = Mathf.Clamp(Time.timeScale - Time.deltaTime, 0, 5);
+                Time.timeScale = Mathf.Clamp(Time.timeScale - Time.unscaledDeltaTime, 0, 5);
             Debug.Log("Time.timeScale = " + Time.timeScale);
         }
         if (Input.GetKey(KeyCode.I))
@@ -49,7 +49,7 @@ public class Main : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 Time.timeScale = 1;
             else
-                Time.timeScale = Mathf.Clamp(Time.timeScale + Time.deltaTime, 0, 5);
+                Time.timeScale = Mathf.Clamp(Time.timeScale + Time.unscaledDeltaTime, 0, 5);
             Debug.Log("Time.timeScale = " + Time.timeScale);
         }
         
