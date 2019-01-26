@@ -50,7 +50,7 @@ public class FightHouse : Fight
         {
             main.ui_manager.dialog_enemy.Enable();
             // Fx damage taken
-            main.camera_manager.Trebble(0.02f);
+            main.camera_manager.Trebble(0.01f);
             Attack currentEnemyAttack = this.enemy.GeCurrentAttack();
             main.ui_manager.dialog_enemy.SelectAttack(this.enemy.attackPattern[this.enemy.currentPatternIndex]);
             this.enemy.updatePattern();
@@ -72,6 +72,10 @@ public class FightHouse : Fight
                 lastDamageDealtByHomeMs = -currentHomeAttack.durationMs;
                 main.ui_manager.dialog_home.Disable();
                 soundGenerator.GenerateSound();
+                
+                if (currentHomeAttack.name == "Rollout") main.Add(new FxRollout(main.home_transform));
+                if (currentHomeAttack.name == "Exploding chimney") main.Add(new FxExplodingChimney(main.home_transform));
+                if (currentHomeAttack.name == "Freesby balcony") main.Add(new FxFreesbyBalcony(main.home_transform));
             }
         }
     }

@@ -158,6 +158,8 @@ public class PhaseFight : Phase
         main.audio_source.clip = main.battleTheme;
         main.audio_source.loop = true;
         main.audio_source.Play();
+        for (int i = 0; i < main.animators.Length; ++i)
+            main.animators[i].enabled = false;
     }
     public override void Update(float elapsed_time)
     {
@@ -179,6 +181,8 @@ public class PhaseFightOutro : PhaseDuration
     {
         Debug.Log(GetType());
         // Fx Boom tchak
+        for (int i = 0; i < main.animators.Length; ++i)
+            main.animators[i].enabled = true;
         main.ui_manager.dialog_home.Disable();
         main.ui_manager.Hide();
         if (main.fight.GetType() == typeof(FightHouse)) main.fight = null;  // Set next fight
