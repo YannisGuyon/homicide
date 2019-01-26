@@ -17,7 +17,8 @@ public class CameraManager : MonoBehaviour
     
     void Update()
     {
-        shader_camera.gameObject.transform.localPosition = Random.insideUnitSphere * trebble;
+        shader_camera.gameObject.transform.localRotation = Quaternion.Slerp(Quaternion.identity, Random.rotationUniform, 0.0002f);
+        shader_camera.gameObject.transform.localPosition = Random.insideUnitSphere * (0.002f + trebble);
         trebble *= Mathf.Clamp01(1 - Time.deltaTime * 5.0f);
     }
 
@@ -29,4 +30,5 @@ public class CameraManager : MonoBehaviour
     {
         trebble += intensity;
     }
+
 }

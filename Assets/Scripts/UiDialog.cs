@@ -19,7 +19,7 @@ public class UiDialog : MonoBehaviour
     private void Update()
     {
         dialog_transform.anchoredPosition = new Vector2(dialog_transform.anchoredPosition.x,
-            Mathf.Lerp(dialog_transform.anchoredPosition.y, (show ? 20 : -200), Time.deltaTime * 20.0f));
+            Mathf.Lerp(dialog_transform.anchoredPosition.y, (show ? 20 : -300), Time.deltaTime * 20.0f));
         if (is_enabled && show)
             dialog_image.color = color_enabled;
         else
