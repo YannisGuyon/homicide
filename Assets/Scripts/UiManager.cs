@@ -15,8 +15,8 @@ public class UiManager : MonoBehaviour
     {
         if (main.fight != null)
         {
-            life_bar_home.Set(main.fight.life_house);
-            life_bar_enemy.Set(main.fight.life_enemy);
+            life_bar_home.Set(main.fight.life_home);
+            life_bar_enemy.Set(main.fight.enemy.life);
         }
     }
     

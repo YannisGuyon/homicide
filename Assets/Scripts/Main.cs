@@ -19,8 +19,8 @@ public class Main : MonoBehaviour
         phase.main = this;
         phase.Init();
         elapsed_time = 0;
-        fight = new FightHouse();
         ui_manager.Init();
+        fight = new FightHouse(new Cottage());
     }
 
     void Update()
@@ -42,14 +42,16 @@ public class Main : MonoBehaviour
                 Time.timeScale = Mathf.Clamp(Time.timeScale + Time.deltaTime, 0, 5);
             Debug.Log("Time.timeScale = " + Time.timeScale);
         }
-
+        
         if (phase != null) phase.Update(elapsed_time);
         if (phase.IsDone(elapsed_time))
         {
             elapsed_time = 0;
-            if (phase.GetType() == typeof(PhaseFight) && fight != null && fight.life_house <= 0)
+            if (phase.GetType() == typeof(PhaseFight) && fight != null && fight.life_home <= 0)
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver", UnityEngine.SceneManagement.LoadSceneMode.Single);
+                // Game over
+                Debug.Log("Game Over");
             }
             else
             {
