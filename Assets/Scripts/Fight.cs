@@ -17,7 +17,7 @@ public abstract class Fight
         this.home.life = 100;
         this.enemy.life = 100;
 
-        main.ui_manager.dialog_home.SetAttacks(home.attacks);
+        main.ui_manager.dialog_home.SetAttacks(this.home.attacks);
         main.ui_manager.dialog_enemy.SetAttacks(this.enemy.attacks);
     }
     virtual public void Update() { }
@@ -25,10 +25,12 @@ public abstract class Fight
 
 public class FightHouse : Fight
 {
-    public int lastDamageDealtByEnemyMs, lastDamageDealtByHomeMs;
-    public FightHouse(Enemy enemy)
+    public int lastDamageDealtByEnemyMs;
+    public int lastDamageDealtByHomeMs;
+    public FightHouse(Enemy enemy, Home home)
     {
         this.enemy = enemy;
+        this.home = home;
     }
 
     override public void Init()
@@ -50,21 +52,21 @@ public class FightHouse : Fight
             main.ui_manager.dialog_enemy.SelectAttack(this.enemy.attackPattern[this.enemy.currentPatternIndex]);                         // #############
             this.enemy.updatePattern();
             home.life -= currentEnemyAttack.damage;
-            lastDamageDealtByEnemyMs -= currentEnemyAttack.durationMs;
+            lastDamageDealtByEnemyMs = -currentEnemyAttack.durationMs;
         }
         else
         {
             main.ui_manager.dialog_enemy.Disable();
         }
-        if (lastDamageDealtByEnemyMs >= 5)
+        if (lastDamageDealtByHomeMs >= 5)
         {
             main.ui_manager.dialog_home.Enable();
-            if (Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 // Handle input
                 Attack currentHomeAttack = this.home.attacks[main.ui_manager.dialog_home.GetSelectedAttack()];
-                home.life -= currentHomeAttack.damage;
-                lastDamageDealtByHomeMs -= currentHomeAttack.durationMs;
+                enemy.life -= currentHomeAttack.damage;
+                lastDamageDealtByHomeMs = -currentHomeAttack.durationMs;
                 main.ui_manager.dialog_home.Disable();
             }
         }

@@ -12,6 +12,7 @@ public class Main : MonoBehaviour
     private Phase phase;
     private float elapsed_time;
     public Fight fight;
+    public Home home;
 
     void Start()
     {
@@ -21,7 +22,8 @@ public class Main : MonoBehaviour
         phase.Init();
         elapsed_time = 0;
         ui_manager.Init();
-        fight = new FightHouse(new Cottage());
+        this.home = new Home();
+        fight = new FightHouse(new Cottage(), this.home);
     }
 
     void Update()
@@ -57,8 +59,11 @@ public class Main : MonoBehaviour
             else
             {
                 phase = phase.GetNextPhase();
-                phase.main = this;
-                phase.Init();
+                if (phase != null)
+                {
+                    phase.main = this;
+                    phase.Init();
+                }
             }
         }
         ui_manager.UpdateUi(this);

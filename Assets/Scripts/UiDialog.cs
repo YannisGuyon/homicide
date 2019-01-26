@@ -14,6 +14,7 @@ public class UiDialog : MonoBehaviour
     public Color color_disabled;
     private bool is_enabled = false;
     private bool show = true;
+    public bool isHome;
 
     private void Update()
     {
@@ -26,10 +27,13 @@ public class UiDialog : MonoBehaviour
 
         if (is_enabled && show)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-                SelectAttack(GetSelectedAttack() - 1);
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-                SelectAttack(GetSelectedAttack() + 1);
+            if (isHome)
+            {
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                    SelectAttack(GetSelectedAttack() - 1);
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                    SelectAttack(GetSelectedAttack() + 1);
+            }
         }
     }
 
@@ -42,7 +46,7 @@ public class UiDialog : MonoBehaviour
         {
             UiAttack attack = Instantiate(attack_prefab, attacks_container);
             attacks.Add(attack);
-            attack.SetText(attacks[i].name);
+            attack.SetText(attacks_texts[i].name);
             if (i == 0)
                 attack.Select();
             else
@@ -86,6 +90,6 @@ public class UiDialog : MonoBehaviour
     }
     public void Disable()
     {
-        is_enabled = true;
+        is_enabled = false;
     }
 }
