@@ -27,7 +27,7 @@ public class PhaseWorldIntro : PhaseDuration
 {
     override public float GetDuration()
     {
-        return 3;
+        return 10;
     }
     override public void Init()
     {
@@ -46,7 +46,7 @@ public class PhaseCityGrowth : PhaseDuration
 {
     override public float GetDuration()
     {
-        return 3;
+        return 4;
     }
     override public void Init()
     {
@@ -63,7 +63,7 @@ public class PhaseAngryness : PhaseDuration
 {
     override public float GetDuration()
     {
-        return 3;
+        return 5;
     }
     override public void Init()
     {
@@ -91,7 +91,7 @@ public class PhaseGoToNextFight : PhaseDuration
 {
     override public float GetDuration()
     {
-        return 3;
+        return 8;
     }
     override public void Init()
     {
@@ -110,14 +110,34 @@ public class PhaseFightIntro : PhaseDuration
 {
     override public float GetDuration()
     {
-        return 3;
+        return 4;
     }
     override public void Init()
     {
         Debug.Log(GetType());
         // Camera on the side
+    }
+    override public Phase GetNextPhase()
+    {
+        return new PhaseFightWarmup();
+    }
+}
+
+public class PhaseFightWarmup : PhaseDuration
+{
+    override public float GetDuration()
+    {
+        return 4;
+    }
+    override public void Init()
+    {
+        Debug.Log(GetType());
+        main.ui_manager.Show();
+        main.ui_manager.dialog_home.Enable();
+        main.fight.main = main;
+        main.fight.Init();
         main.audio_source.clip = main.introBattleTheme;
-        main.audio_source.loop = true;
+        main.audio_source.loop = false;
         main.audio_source.Play();
     }
     override public Phase GetNextPhase()
@@ -135,11 +155,6 @@ public class PhaseFight : Phase
     override public void Init()
     {
         Debug.Log(GetType());
-        main.ui_manager.Show();
-        main.ui_manager.dialog_home.Enable();
-        //main.ui_manager.dialog_home.SetAttacks();
-        main.fight.main = main;
-        main.fight.Init();
         main.audio_source.clip = main.battleTheme;
         main.audio_source.loop = true;
         main.audio_source.Play();
