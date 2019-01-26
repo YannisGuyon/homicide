@@ -16,6 +16,9 @@ public abstract class Fight
     {
         life_home = 100;
         enemy.life = 100;
+
+        main.ui_manager.dialog_home.SetAttacks("Home attack 1", "Home attack 2", "Home attack 3");     // #############
+        main.ui_manager.dialog_enemy.SetAttacks("Enemy attack 1", "Enemy attack 2", "Enemy attack 3");    // #############
     }
     virtual public void Update() { }
 }
@@ -45,11 +48,18 @@ public class FightHouse : Fight
             life_home -= currentEnemyAttack.damage;
             lastDamageDealtByEnemyMs -= currentEnemyAttack.durationMs;
 
+            main.ui_manager.dialog_enemy.SelectAttack(0);                         // #############
+            main.ui_manager.dialog_enemy.Enable();                         // #############
+            main.ui_manager.dialog_enemy.Disable();                         // #############
+            main.ui_manager.dialog_home.Enable();                         // #############
+            main.ui_manager.dialog_home.Disable();                         // #############
+
             Debug.Log(currentEnemyAttack.name + " : life_home "+life_home);
         }
         if (Input.GetKey(KeyCode.KeypadEnter))
         {
             // Handle input
+            int attack_index = main.ui_manager.dialog_home.GetSelectedAttack();     // #############
         }
     }
 }

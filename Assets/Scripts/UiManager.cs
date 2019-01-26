@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class UiManager : MonoBehaviour
 {
-    public LifeBar life_bar_home;
-    public LifeBar life_bar_enemy;
-    public Dialog dialog_home;
+    public UiLifeBar life_bar_home;
+    public UiLifeBar life_bar_enemy;
+    public UiDialog dialog_home;
+    public UiDialog dialog_enemy;
 
     public void Init()
     {
@@ -26,11 +27,13 @@ public class UiManager : MonoBehaviour
         life_bar_home.Hide();
         life_bar_enemy.Hide();
         dialog_home.Hide();
+        dialog_enemy.Hide();
     }
     public void Show()
     {
         life_bar_home.Show();
         life_bar_enemy.Show();
         dialog_home.Show();
+        dialog_enemy.Show();
     }
 }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialog : MonoBehaviour
+public class UiDialog : MonoBehaviour
 {
     public RectTransform dialog_transform;
     public Image dialog_image;
-    public Attack attack_prefab;
+    public UiAttack attack_prefab;
     public Transform attacks_container;
-    private List<Attack> attacks = new List<Attack>();
+    private List<UiAttack> attacks = new List<UiAttack>();
     public Color color_enabled;
     public Color color_disabled;
     private bool is_enabled = false;
@@ -40,7 +40,7 @@ public class Dialog : MonoBehaviour
         attacks.Clear();
         for (int i = 0; i < attacks_texts.Length; ++i)
         {
-            Attack attack = Instantiate(attack_prefab, attacks_container);
+            UiAttack attack = Instantiate(attack_prefab, attacks_container);
             attacks.Add(attack);
             attack.SetText(attacks_texts[i]);
             if (i == 0)
