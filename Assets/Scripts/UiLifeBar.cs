@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LifeBar : MonoBehaviour
+public class UiLifeBar : MonoBehaviour
 {
     public RectTransform life_transform;
     public RectTransform bar_transform;
