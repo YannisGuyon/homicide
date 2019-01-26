@@ -13,6 +13,10 @@ public class UiLifeBar : MonoBehaviour
     public bool flipped = false;
     private bool show = true;
 
+    private void Start()
+    {
+        bar_image.material = Instantiate(bar_image.material);
+    }
     private void Update()
     {
         life_transform.anchoredPosition = new Vector2(life_transform.anchoredPosition.x,
@@ -25,7 +29,7 @@ public class UiLifeBar : MonoBehaviour
             bar_transform.anchorMin = new Vector2(1 - ratio, bar_transform.anchorMin.y);
         else
             bar_transform.anchorMax = new Vector2(ratio, bar_transform.anchorMax.y);
-        bar_image.color = Color.Lerp(color_empty, color_full, ratio);
+        bar_image.material.color = Color.Lerp(color_empty, color_full, ratio);
     }
 
     public void Hide()

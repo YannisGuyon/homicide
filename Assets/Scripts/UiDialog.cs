@@ -16,14 +16,18 @@ public class UiDialog : MonoBehaviour
     private bool show = true;
     public bool isHome;
 
+    private void Start()
+    {
+        dialog_image.material = Instantiate(dialog_image.material);
+    }
     private void Update()
     {
         dialog_transform.anchoredPosition = new Vector2(dialog_transform.anchoredPosition.x,
             Mathf.Lerp(dialog_transform.anchoredPosition.y, (show ? 20 : -300), Time.deltaTime * 20.0f));
         if (is_enabled && show)
-            dialog_image.color = color_enabled;
+            dialog_image.material.color = color_enabled;
         else
-            dialog_image.color = color_disabled;
+            dialog_image.material.color = color_disabled;
 
         if (is_enabled && show)
         {
@@ -87,9 +91,13 @@ public class UiDialog : MonoBehaviour
     public void Enable()
     {
         is_enabled = true;
+        for (int i = 0; i < attacks.Count; ++i)
+            attacks[i].SetAvailable(true);
     }
     public void Disable()
     {
         is_enabled = false;
+        for (int i = 0; i < attacks.Count; ++i)
+            attacks[i].SetAvailable(false);
     }
 }
