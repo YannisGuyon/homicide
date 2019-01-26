@@ -9,16 +9,21 @@ public class CameraManager : MonoBehaviour
     public Color calm_color;
     public Color angry_color;
     private float trebble;
+    private bool enable_trebble;
 
     void Start()
     {
         trebble = 0;
+        enable_trebble = false;
     }
     
     void Update()
     {
-        shader_camera.gameObject.transform.localRotation = Quaternion.Slerp(Quaternion.identity, Random.rotationUniform, 0.0002f);
-        shader_camera.gameObject.transform.localPosition = Random.insideUnitSphere * (0.002f + trebble);
+        if (enable_trebble)
+        {
+            shader_camera.gameObject.transform.localRotation = Quaternion.Slerp(Quaternion.identity, Random.rotationUniform, 0.00005f);
+            shader_camera.gameObject.transform.localPosition = Random.insideUnitSphere * (0.00005f + trebble);
+        }
         trebble *= Mathf.Clamp01(1 - Time.deltaTime * 5.0f);
     }
 
@@ -30,5 +35,8 @@ public class CameraManager : MonoBehaviour
     {
         trebble += intensity;
     }
-
+    public void EnableTrebble()
+    {
+        enable_trebble = true;
+    }
 }
