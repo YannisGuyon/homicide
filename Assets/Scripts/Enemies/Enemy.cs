@@ -23,7 +23,7 @@ public class Cottage : Enemy {
     public Cottage()
     {
         this.name = "Little Cottage";
-        this.attacks = new Attack[] { new Attack(1000, 10, "Shutter Shaker"), new Attack(1200, 15, "Chim chimney") };
+        this.attacks = new Attack[] { new Attack(2000, 10, "Shutter Shaker"), new Attack(2400, 15, "Chim chimney") };
         this.attackPattern = new int[] { 0, 0, 1 };
     }
 }

@@ -144,6 +144,8 @@ public class PhaseFightWarmup : PhaseDuration
         main.audio_source.clip = main.introBattleTheme;
         main.audio_source.loop = false;
         main.audio_source.Play();
+        for (int i = 0; i < main.animators.Length; ++i)
+            main.animators[i].enabled = false;
     }
     override public Phase GetNextPhase()
     {
@@ -163,8 +165,6 @@ public class PhaseFight : Phase
         main.audio_source.clip = main.battleTheme;
         main.audio_source.loop = true;
         main.audio_source.Play();
-        for (int i = 0; i < main.animators.Length; ++i)
-            main.animators[i].enabled = false;
     }
     public override void Update(float elapsed_time)
     {
