@@ -25,6 +25,9 @@ public class Main : MonoBehaviour
     public Animator[] animators;
     public Transform home_transform;
     public Transform cottage_transform;
+    public Transform factory_transform;
+    public Transform skymachin_transform;
+    public Transform catedral_transform;
 
     private LinkedList<Fx> fxs = new LinkedList<Fx>();
     public SoundGenerator soundGenerator;
@@ -32,6 +35,9 @@ public class Main : MonoBehaviour
     void Start()
     {
         if (cottage_transform == null) cottage_transform = GameObject.Find("Scene/scene/Cube").transform;
+        if (factory_transform == null) factory_transform = GameObject.Find("Scene/scene/Cylinder_001").transform;
+        if (skymachin_transform == null) skymachin_transform = GameObject.Find("Scene/scene/Plane_003").transform;
+        if (catedral_transform == null) catedral_transform = GameObject.Find("Scene/scene/Cube_008").transform;
 
         camera_manager.shader_camera.material = Instantiate(camera_manager.shader_camera.material);
         phase = new PhaseWorldIntro();
@@ -279,14 +285,15 @@ public class FxChimChimney : FxTransform
     }
 }
 
-public class FxSpikySpiky : FxTransform
+// Factory
+public class FxSoundTheAlarm : FxTransform
 {
-    public FxSpikySpiky(Transform mesh_transform) : base(mesh_transform)
+    public FxSoundTheAlarm(Transform mesh_transform) : base(mesh_transform)
     {
     }
     public override float GetDuration()
     {
-        return 0.3f;
+        return 0.4f;
     }
     public override void Update()
     {
@@ -299,7 +306,182 @@ public class FxSpikySpiky : FxTransform
         	} else {
         		scale = GetProgress();
         	}
-            transform.localScale = new Vector3(scale, 1.0, scale);
+            transform.localScale = new Vector3(scale/2.0f, 1.0f, scale / 2.0f);
+        }
+    }
+}
+public class FxStaffEvacuation : FxTransform
+{
+    public FxStaffEvacuation(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.4f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+            transform.localPosition = transform.localPosition + new Vector3(-GetProgress(), 0, 0);
+        }
+    }
+}
+public class FxPollutionPuke : FxTransform
+{
+    public FxPollutionPuke(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.4f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+            transform.localRotation = local_rotation * Quaternion.AngleAxis(Mathf.Cos(GetProgress() * Mathf.PI * 6) * 30, Vector3.forward);
+        }
+    }
+}
+
+// Skyscraper
+public class FxSpikySpiky : FxTransform
+{
+    public FxSpikySpiky(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.4f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+            float scale;
+            if (GetProgress() < 0.5f)
+            {
+                scale = 1.0f - GetProgress();
+            }
+            else
+            {
+                scale = GetProgress();
+            }
+            transform.localScale = new Vector3(scale, 1.0f, scale);
+        }
+    }
+}
+public class FxShurikenFromTheSky : FxTransform
+{
+    public FxShurikenFromTheSky(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.4f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+
+        }
+    }
+}
+public class FxSnakescraper : FxTransform
+{
+    public FxSnakescraper(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.4f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+
+        }
+    }
+}
+
+// Catedral
+public class FxBellyBelly : FxTransform
+{
+    public FxBellyBelly(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.4f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+            float scale;
+            if (GetProgress() < 0.5f)
+            {
+                scale = 1.0f - GetProgress();
+            }
+            else
+            {
+                scale = GetProgress();
+            }
+            transform.localScale = new Vector3(scale/4.0f, 1.0f, scale / 4.0f);
+        }
+    }
+}
+public class FxSacrushedChapel : FxTransform
+{
+    public FxSacrushedChapel(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.4f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+            float t;
+            if (GetProgress() < 0.5f)
+            {
+                t = GetProgress();
+            }
+            else
+            {
+                t = 1.0f - GetProgress();
+            }
+            transform.localPosition = transform.localPosition + new Vector3(0, t*2, 0);
+        }
+    }
+}
+public class FxGrowingFaith : FxTransform
+{
+    public FxGrowingFaith(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.4f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+            transform.localScale = transform.localScale + new Vector3(GetProgress()/2.0f, GetProgress() / 2.0f, GetProgress() / 2.0f);
         }
     }
 }

@@ -56,11 +56,19 @@ public abstract class FightBase : Fight
             if (currentEnemyAttack.name == "Chim chimney") main.Add(new FxChimChimney(main.cottage_transform));
 
             // factory
-            if (currentEnemyAttack.name == "Spiky spiky") main.Add(new FxChimChimney(main.cottage_transform));
-            if (currentEnemyAttack.name == "Spiky spiky") main.Add(new FxChimChimney(main.cottage_transform));
+            if (currentEnemyAttack.name == "Sound the alarm") main.Add(new FxSoundTheAlarm(main.factory_transform));
+            if (currentEnemyAttack.name == "Staff Evacuation") main.Add(new FxStaffEvacuation(main.factory_transform));
+            if (currentEnemyAttack.name == "Pollution Puke") main.Add(new FxPollutionPuke(main.factory_transform));
 
             // Skyscraper
-            if (currentEnemyAttack.name == "Spiky spiky") main.Add(new FxChimChimney(main.cottage_transform));
+            if (currentEnemyAttack.name == "Spiky spiky") main.Add(new FxSpikySpiky(main.skymachin_transform));
+            if (currentEnemyAttack.name == "Shuriken from the sky") main.Add(new FxChimChimney(main.skymachin_transform));
+            if (currentEnemyAttack.name == "Snakescraper") main.Add(new FxShutterShaker(main.skymachin_transform));
+
+            // Cathedral
+            if (currentEnemyAttack.name == "Belly Belly") main.Add(new FxBellyBelly(main.catedral_transform));
+            if (currentEnemyAttack.name == "Sacrushed Chapel") main.Add(new FxSacrushedChapel(main.catedral_transform));
+            if (currentEnemyAttack.name == "Growing Faith") main.Add(new FxGrowingFaith(main.catedral_transform));
         }
         else
         {

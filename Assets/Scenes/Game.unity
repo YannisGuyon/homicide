@@ -1016,6 +1016,9 @@ MonoBehaviour:
   - {fileID: 1639524734}
   home_transform: {fileID: 747503998}
   cottage_transform: {fileID: 1072160012}
+  factory_transform: {fileID: 0}
+  skymachin_transform: {fileID: 0}
+  catedral_transform: {fileID: 0}
   soundGenerator: {fileID: 2134847771}
 --- !u!4 &1034456348
 Transform:
