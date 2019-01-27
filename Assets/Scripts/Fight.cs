@@ -51,8 +51,16 @@ public abstract class FightBase : Fight
             home.life -= currentEnemyAttack.damage;
             lastDamageDealtByEnemyMs = -currentEnemyAttack.durationMs;
 
+            // Cottage
             if (currentEnemyAttack.name == "Shutter Shaker") main.Add(new FxShutterShaker(main.cottage_transform));
             if (currentEnemyAttack.name == "Chim chimney") main.Add(new FxChimChimney(main.cottage_transform));
+
+            // factory
+            if (currentEnemyAttack.name == "Spiky spiky") main.Add(new FxChimChimney(main.cottage_transform));
+            if (currentEnemyAttack.name == "Spiky spiky") main.Add(new FxChimChimney(main.cottage_transform));
+
+            // Skyscraper
+            if (currentEnemyAttack.name == "Spiky spiky") main.Add(new FxChimChimney(main.cottage_transform));
         }
         else
         {

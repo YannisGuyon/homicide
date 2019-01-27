@@ -278,3 +278,28 @@ public class FxChimChimney : FxTransform
         }
     }
 }
+
+public class FxSpikySpiky : FxTransform
+{
+    public FxSpikySpiky(Transform mesh_transform) : base(mesh_transform)
+    {
+    }
+    public override float GetDuration()
+    {
+        return 0.3f;
+    }
+    public override void Update()
+    {
+        base.Update();
+        if (GetProgress() < 1)
+        {
+        	float scale;
+        	if (GetProgress() < 0.5f) {
+				scale = 1.0f - GetProgress();
+        	} else {
+        		scale = GetProgress();
+        	}
+            transform.localScale = new Vector3(scale, 1.0, scale);
+        }
+    }
+}
