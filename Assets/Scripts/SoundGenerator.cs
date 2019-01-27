@@ -11,7 +11,7 @@ public class SoundGenerator : MonoBehaviour
     public AudioClip run;
     public AudioClip laugh;
     private int lastBuildingSoundPlayedMs = 0;
-    private int delayBetweenBuildingSoundMs = 1000;
+    private int delayBetweenBuildingSoundMs = 1200;
 
     public void GenerateJapaneseSound()
     {

@@ -235,9 +235,9 @@ public class PhaseWorldOutro : PhaseDuration
         // Cut
         // Happy house
         main.camera_manager.DisableTrebble();
-        main.audio_source.clip = main.endingTheme;
+        main.audio_source.clip = main.endingCinematic;
         main.audio_source.loop = true;
-        main.audio_source.Play();
+        main.audio_source.Play(2);
     }
     override public Phase GetNextPhase()
     {
