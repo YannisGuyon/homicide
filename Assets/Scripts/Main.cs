@@ -19,6 +19,7 @@ public class Main : MonoBehaviour
     public AudioClip mainTheme;
     public AudioClip introBattleTheme;
     public AudioClip battleTheme;
+    public AudioClip endingCinematic;
     public AudioClip endingTheme;
 
     public Animator[] animators;
