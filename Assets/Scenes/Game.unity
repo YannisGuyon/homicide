@@ -559,12 +559,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2000000, guid: 349fbd5a8b148c948a461f73a302b253, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 349fbd5a8b148c948a461f73a302b253, type: 3}
---- !u!95 &339893093 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9500000, guid: 349fbd5a8b148c948a461f73a302b253,
-    type: 3}
-  m_PrefabInstance: {fileID: 339893092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,11 +908,10 @@ MonoBehaviour:
   introBattleTheme: {fileID: 8300000, guid: b4302d398079c7c4995596244ff03576, type: 3}
   battleTheme: {fileID: 8300000, guid: 4e4484677e97fca40a598bd77b342839, type: 3}
   endingTheme: {fileID: 8300000, guid: 2f16df7d01acb164db4a1d3921494f57, type: 3}
-  japaneseSoundGenerator: {fileID: 2134847771}
-  animators:
-  - {fileID: 339893093}
-  - {fileID: 1072160012}
+  animators: []
   home_transform: {fileID: 747503998}
+  cottage_transform: {fileID: 1072160012}
+  soundGenerator: {fileID: 2134847771}
 --- !u!4 &1034456348
 Transform:
   m_ObjectHideFlags: 0
@@ -994,9 +987,9 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 6c8311e990b865b46b087e7af1ea5991, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb45f897be8b3f5488f4c43d232bd84e, type: 3}
---- !u!95 &1072160012 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9500000, guid: eb45f897be8b3f5488f4c43d232bd84e,
+--- !u!4 &1072160012 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400676, guid: eb45f897be8b3f5488f4c43d232bd84e,
     type: 3}
   m_PrefabInstance: {fileID: 1072160011}
   m_PrefabAsset: {fileID: 0}
@@ -1537,7 +1530,7 @@ PrefabInstance:
     - target: {fileID: 6817138341177871135, guid: d8ef08c10b5159940bb8808ba5b512d2,
         type: 3}
       propertyPath: m_Name
-      value: JapaneseSoundGenerator
+      value: SoundGenerator
       objectReference: {fileID: 0}
     - target: {fileID: 6817138341177871130, guid: d8ef08c10b5159940bb8808ba5b512d2,
         type: 3}
