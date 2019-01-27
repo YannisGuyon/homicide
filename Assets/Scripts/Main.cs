@@ -39,7 +39,7 @@ public class Main : MonoBehaviour
         elapsed_time = 0;
         ui_manager.Init();
         this.home = new Home();
-        fight = new FightHouse(new Cottage(), this.home, soundGenerator);
+        fight = new FightCottage(new Cottage(), this.home, soundGenerator);
     }
 
     void Update()

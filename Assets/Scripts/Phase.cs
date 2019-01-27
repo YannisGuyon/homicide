@@ -116,6 +116,8 @@ public class PhaseFightIntro : PhaseDuration
 {
     override public float GetDuration()
     {
+        if (main.fight.GetType() == typeof(FightFactory))
+            return 7;
         return 4;
     }
     override public void Init()
@@ -133,7 +135,7 @@ public class PhaseFightWarmup : PhaseDuration
 {
     override public float GetDuration()
     {
-        return 4;
+        return 1.5f;
     }
     override public void Init()
     {
@@ -173,6 +175,23 @@ public class PhaseFight : Phase
     }
     override public Phase GetNextPhase()
     {
+        return new PhaseFightFinishFx();
+    }
+}
+
+public class PhaseFightFinishFx : PhaseDuration
+{
+    override public float GetDuration()
+    {
+        return 2;
+    }
+    override public void Init()
+    {
+        main.ui_manager.dialog_home.Disable();
+        main.ui_manager.Hide();
+    }
+    override public Phase GetNextPhase()
+    {
         return new PhaseFightOutro();
     }
 }
@@ -185,13 +204,12 @@ public class PhaseFightOutro : PhaseDuration
     }
     override public void Init()
     {
-        Debug.Log(GetType());
-        // Fx Boom tchak
         for (int i = 0; i < main.animators.Length; ++i)
             main.animators[i].enabled = true;
-        main.ui_manager.dialog_home.Disable();
-        main.ui_manager.Hide();
-        if (main.fight.GetType() == typeof(FightHouse)) main.fight = null;  // Set next fight
+        if (main.fight.GetType() == typeof(FightCottage)) main.fight = new FightFactory(new Factory(), main.home, main.soundGenerator);
+        else if (main.fight.GetType() == typeof(FightFactory)) main.fight = new FightSkyscraper(new Skyscraper(), main.home, main.soundGenerator);
+        else if (main.fight.GetType() == typeof(FightSkyscraper)) main.fight = new FightCathedral(new Cathedral(), main.home, main.soundGenerator);
+        else if (main.fight.GetType() == typeof(FightCathedral)) main.fight = null;
     }
     override public Phase GetNextPhase()
     {
@@ -208,16 +226,40 @@ public class PhaseWorldOutro : PhaseDuration
 {
     override public float GetDuration()
     {
-        return 23;
+        return 17;
     }
     override public void Init()
     {
         Debug.Log(GetType());
         // Cut
         // Happy house
+        main.camera_manager.DisableTrebble();
         main.audio_source.clip = main.endingTheme;
         main.audio_source.loop = true;
         main.audio_source.Play();
+    }
+    override public Phase GetNextPhase()
+    {
+        return new PhaseWorldOutroColorChange();
+    }
+}
+
+public class PhaseWorldOutroColorChange : PhaseDuration
+{
+    override public float GetDuration()
+    {
+        return 6;
+    }
+    override public void Init()
+    {
+
+    }
+    override public void Update(float elapsed_time)
+    {
+        if (elapsed_time >= 1)
+        {
+            main.camera_manager.SetColor(Color.Lerp(main.camera_manager.angry_color, main.camera_manager.calm_color, (elapsed_time - 1.0f) * 2.0f));
+        }
     }
     override public Phase GetNextPhase()
     {

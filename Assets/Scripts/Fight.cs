@@ -23,17 +23,11 @@ public abstract class Fight
     virtual public void Update() { }
 }
 
-public class FightHouse : Fight
+public abstract class FightBase : Fight
 {
     public int lastDamageDealtByEnemyMs;
     public int lastDamageDealtByHomeMs;
     public SoundGenerator soundGenerator;
-    public FightHouse(Enemy enemy, Home home, SoundGenerator soundGenerator)
-    {
-        this.enemy = enemy;
-        this.home = home;
-        this.soundGenerator = soundGenerator;
-    }
 
     override public void Init()
     {
@@ -74,15 +68,55 @@ public class FightHouse : Fight
                 enemy.life -= currentHomeAttack.damage;
                 lastDamageDealtByHomeMs = -currentHomeAttack.durationMs;
                 main.ui_manager.dialog_home.Disable();
-                
+
                 if (currentHomeAttack.name == "Rollout") main.Add(new FxRollout(main.home_transform));
                 if (currentHomeAttack.name == "Exploding chimney") main.Add(new FxExplodingChimney(main.home_transform));
                 if (currentHomeAttack.name == "Freesby balcony") main.Add(new FxFreesbyBalcony(main.home_transform));
                 if (currentHomeAttack.name == "Tree crush") main.Add(new FxTreeCrush(main.home_transform));
-               
-		soundGenerator.GenerateJapaneseSound();
+
+                soundGenerator.GenerateJapaneseSound();
             }
         }
+    }
+}
+
+public class FightCottage : FightBase
+{
+    public FightCottage(Enemy enemy, Home home, SoundGenerator soundGenerator)
+    {
+        this.enemy = enemy;
+        this.home = home;
+        this.soundGenerator = soundGenerator;
+    }
+}
+
+public class FightFactory : FightBase
+{
+    public FightFactory(Enemy enemy, Home home, SoundGenerator soundGenerator)
+    {
+        this.enemy = enemy;
+        this.home = home;
+        this.soundGenerator = soundGenerator;
+    }
+}
+
+public class FightSkyscraper : FightBase
+{
+    public FightSkyscraper(Enemy enemy, Home home, SoundGenerator soundGenerator)
+    {
+        this.enemy = enemy;
+        this.home = home;
+        this.soundGenerator = soundGenerator;
+    }
+}
+
+public class FightCathedral : FightBase
+{
+    public FightCathedral(Enemy enemy, Home home, SoundGenerator soundGenerator)
+    {
+        this.enemy = enemy;
+        this.home = home;
+        this.soundGenerator = soundGenerator;
     }
 }
 

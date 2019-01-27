@@ -39,4 +39,8 @@ public class CameraManager : MonoBehaviour
     {
         enable_trebble = true;
     }
+    public void DisableTrebble()
+    {
+        enable_trebble = false;
+    }
 }
