@@ -27,8 +27,8 @@ public class FightHouse : Fight
 {
     public int lastDamageDealtByEnemyMs;
     public int lastDamageDealtByHomeMs;
-    public JapaneseSoundGenerator soundGenerator;
-    public FightHouse(Enemy enemy, Home home, JapaneseSoundGenerator soundGenerator)
+    public SoundGenerator soundGenerator;
+    public FightHouse(Enemy enemy, Home home, SoundGenerator soundGenerator)
     {
         this.enemy = enemy;
         this.home = home;
@@ -74,12 +74,13 @@ public class FightHouse : Fight
                 enemy.life -= currentHomeAttack.damage;
                 lastDamageDealtByHomeMs = -currentHomeAttack.durationMs;
                 main.ui_manager.dialog_home.Disable();
-                soundGenerator.GenerateSound();
                 
                 if (currentHomeAttack.name == "Rollout") main.Add(new FxRollout(main.home_transform));
                 if (currentHomeAttack.name == "Exploding chimney") main.Add(new FxExplodingChimney(main.home_transform));
                 if (currentHomeAttack.name == "Freesby balcony") main.Add(new FxFreesbyBalcony(main.home_transform));
                 if (currentHomeAttack.name == "Tree crush") main.Add(new FxTreeCrush(main.home_transform));
+               
+		soundGenerator.GenerateJapaneseSound();
             }
         }
     }

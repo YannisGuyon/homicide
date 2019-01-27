@@ -20,13 +20,13 @@ public class Main : MonoBehaviour
     public AudioClip introBattleTheme;
     public AudioClip battleTheme;
     public AudioClip endingTheme;
-    public JapaneseSoundGenerator japaneseSoundGenerator;
 
     public Animator[] animators;
     public Transform home_transform;
     public Transform cottage_transform;
 
     private LinkedList<Fx> fxs = new LinkedList<Fx>();
+    public SoundGenerator soundGenerator;
 
     void Start()
     {
@@ -39,7 +39,7 @@ public class Main : MonoBehaviour
         elapsed_time = 0;
         ui_manager.Init();
         this.home = new Home();
-        fight = new FightHouse(new Cottage(), this.home, japaneseSoundGenerator);
+        fight = new FightHouse(new Cottage(), this.home, soundGenerator);
     }
 
     void Update()

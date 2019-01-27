@@ -53,6 +53,10 @@ public class PhaseCityGrowth : PhaseDuration
         Debug.Log(GetType());
         // Grow buildings animation
     }
+    public override void Update(float elapsed_time)
+    {
+        main.soundGenerator.GenerateBuildingSound(elapsed_time);
+    }
     override public Phase GetNextPhase()
     {
         return new PhaseAngryness();
@@ -73,6 +77,7 @@ public class PhaseAngryness : PhaseDuration
         main.audio_source.clip = main.mainTheme;
         main.audio_source.loop = true;
         main.audio_source.Play();
+        main.soundGenerator.GenerateScream();
     }
     override public void Update(float elapsed_time)
     {
