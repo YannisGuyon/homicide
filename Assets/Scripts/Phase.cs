@@ -183,7 +183,7 @@ public class PhaseFightFinishFx : PhaseDuration
 {
     override public float GetDuration()
     {
-        return 2;
+        return 1;
     }
     override public void Init()
     {
