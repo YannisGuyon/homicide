@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class UiManager : MonoBehaviour
     public UiLifeBar life_bar_enemy;
     public UiDialog dialog_home;
     public UiDialog dialog_enemy;
+
+    public Text enemy_name;
 
     public void Init()
     {

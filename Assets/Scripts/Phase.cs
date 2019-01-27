@@ -144,6 +144,7 @@ public class PhaseFightWarmup : PhaseDuration
         main.ui_manager.dialog_home.Enable();
         main.fight.main = main;
         main.fight.Init();
+        main.ui_manager.enemy_name.text = main.fight.enemy.name;
         main.audio_source.clip = main.introBattleTheme;
         main.audio_source.loop = false;
         main.audio_source.Play();
