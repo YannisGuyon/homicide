@@ -237,7 +237,7 @@ public class PhaseWorldOutro : PhaseDuration
         main.camera_manager.DisableTrebble();
         main.audio_source.clip = main.endingCinematic;
         main.audio_source.loop = true;
-        main.audio_source.Play(2);
+        main.audio_source.PlayDelayed(2);
     }
     override public Phase GetNextPhase()
     {

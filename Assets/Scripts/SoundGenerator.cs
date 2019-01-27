@@ -37,8 +37,8 @@ public class SoundGenerator : MonoBehaviour
     public void GenerateRun()
     {
         Debug.Log("run");
-
-        audiosource.PlayOneShot(run);
+        audiosource.clip = run;
+        audiosource.PlayDelayed(2);
     }
 
     public void GenerateLaugh()
