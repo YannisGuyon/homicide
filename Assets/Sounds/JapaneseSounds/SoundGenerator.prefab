@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6817138341177871129}
   - component: {fileID: 6817138341177871128}
   m_Layer: 0
-  m_Name: JapaneseSoundGenerator
+  m_Name: SoundGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,6 +60,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 93c421af484c15c46a7eccd0961788b8, type: 3}
   - {fileID: 8300000, guid: 0361580da4fe5da4a9b37b09a2945cec, type: 3}
   scream: {fileID: 8300000, guid: 8d7cf5630235bd946a3432738edb1302, type: 3}
+  run: {fileID: 8300000, guid: c4319eed00f83be48903be1c21350506, type: 3}
+  laugh: {fileID: 8300000, guid: e92b62f3a9825cd4d89872ad16387e20, type: 3}
 --- !u!82 &6817138341177871128
 AudioSource:
   m_ObjectHideFlags: 0

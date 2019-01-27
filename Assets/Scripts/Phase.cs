@@ -102,6 +102,7 @@ public class PhaseGoToNextFight : PhaseDuration
     {
         main.camera_manager.EnableTrebble();
         Debug.Log(GetType());
+        main.soundGenerator.GenerateRun();
         // Camera behind house
         // House move
     }
@@ -195,7 +196,10 @@ public class PhaseFightOutro : PhaseDuration
     override public Phase GetNextPhase()
     {
         if (main.fight != null)
+        {
+            main.soundGenerator.GenerateLaugh();
             return new PhaseGoToNextFight();
+        }
         return new PhaseWorldOutro();
     }
 }
